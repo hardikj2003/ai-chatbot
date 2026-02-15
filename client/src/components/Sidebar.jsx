@@ -19,7 +19,7 @@ const Sidebar = ({
     e.stopPropagation(); // Prevents switching to the chat while deleting it
 
     try {
-      const response = await fetch(`http://localhost:8000/api/chat/${chatId}`, {
+      const response = await fetch(`https://ai-chatbot-df61.onrender.com/api/chat/${chatId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });

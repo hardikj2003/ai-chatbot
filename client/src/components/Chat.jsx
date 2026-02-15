@@ -21,7 +21,7 @@ const Chat = () => {
   // Fetch all chat sessions for the sidebar on component load
   const fetchAllChats = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/chat/all", {
+      const response = await fetch("https://ai-chatbot-df61.onrender.com/api/chat/all", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await response.json();
@@ -44,7 +44,7 @@ const Chat = () => {
 
   const startNewChat = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/chat/new", {
+      const res = await fetch("https://ai-chatbot-df61.onrender.com/api/chat/new", {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -79,7 +79,7 @@ const Chat = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`http://localhost:8000/api/chat`, {
+      const response = await fetch(`https://ai-chatbot-df61.onrender.com/api/chat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

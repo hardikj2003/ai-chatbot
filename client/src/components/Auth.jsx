@@ -15,10 +15,9 @@ const Auth = ({ setAuthToken }) => {
     setError("");
 
     const endpoint = isLogin ? "/api/auth/login" : "/api/auth/signup";
-    const API_URL = process.env.API_URL;
 
     try {
-      const response = await fetch(`http://localhost:8000${endpoint}`, {
+      const response = await fetch(`https://ai-chatbot-df61.onrender.com${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
