@@ -47,7 +47,7 @@ const Chat = () => {
   const startNewChat = async () => {
     try {
       const res = await fetch(
-        "https://ai-chatbot-df61.onrender.com/api/chat/new",
+        "http://localhost:8000/api/chat/new",
         {
           method: "POST",
           headers: { Authorization: `Bearer ${token}` },

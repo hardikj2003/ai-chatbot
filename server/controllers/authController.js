@@ -4,9 +4,9 @@ import User from '../models/User.js';
 
 const signup = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const {name, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ email, password: hashedPassword });
+    const user = new User({name, email, password: hashedPassword });
     await user.save();
     res.status(201).json({ message: "User registered" });
   } catch (err) {

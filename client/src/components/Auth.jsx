@@ -3,7 +3,7 @@ import InputField from "./InputField";
 
 const Auth = ({ setAuthToken }) => {
   const [isLogin, setIsLogin] = useState(true);
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({name:"", email: "", password: "" });
   const [error, setError] = useState("");
 
   const handleInputChange = (e) => {

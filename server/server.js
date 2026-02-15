@@ -8,7 +8,7 @@ import chatRoutes from './routes/chatRoutes.js';
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://ai-chatbot-1-ya0w.onrender.com',
   methods: ['GET', 'POST','DELETE', 'PUT'],
   credentials: true
 }));
