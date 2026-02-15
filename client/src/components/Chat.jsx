@@ -19,15 +19,17 @@ const Chat = () => {
   }, [messages, isLoading]);
 
   // Fetch all chat sessions for the sidebar on component load
-  const fetchAllChats = async () => {
+  const fetchAllChats = useCallback(async () => {
     try {
-      const response = await fetch("https://ai-chatbot-df61.onrender.com/api/chat/all", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await fetch(
+        "https://ai-chatbot-df61.onrender.com/api/chat/all",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
       const data = await response.json();
       if (response.ok) {
         setChatList(data);
-        // Automatically load the most recent chat if no active chat is set
         if (data.length > 0 && !activeChatId) {
           setActiveChatId(data[0]._id);
           setMessages(data[0].messages);
@@ -36,18 +38,21 @@ const Chat = () => {
     } catch (err) {
       console.error("Failed to fetch chat list", err);
     }
-  };
+  }, [token, activeChatId]);
 
   useEffect(() => {
     fetchAllChats();
-  }, []);
+  }, [fetchAllChats]);
 
   const startNewChat = async () => {
     try {
-      const res = await fetch("https://ai-chatbot-df61.onrender.com/api/chat/new", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await fetch(
+        "https://ai-chatbot-df61.onrender.com/api/chat/new",
+        {
+          method: "POST",
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
       const data = await res.json();
       if (res.ok) {
         setActiveChatId(data._id);
@@ -79,17 +84,20 @@ const Chat = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`https://ai-chatbot-df61.onrender.com/api/chat`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+      const response = await fetch(
+        `https://ai-chatbot-df61.onrender.com/api/chat`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            prompt: userText,
+            chatId: activeChatId,
+          }),
         },
-        body: JSON.stringify({
-          prompt: userText,
-          chatId: activeChatId,
-        }),
-      });
+      );
 
       const data = await response.json();
       if (response.ok) {
@@ -114,9 +122,9 @@ const Chat = () => {
         activeChatId={activeChatId}
         onNewChat={startNewChat}
         onSwitchChat={switchChat}
-        fetchAllChats={fetchAllChats} 
-        setMessages={setMessages} 
-        setActiveChatId={setActiveChatId} 
+        fetchAllChats={fetchAllChats}
+        setMessages={setMessages}
+        setActiveChatId={setActiveChatId}
       />
 
       <main className="flex-1 flex flex-col relative bg-white">

@@ -53,7 +53,7 @@ const Auth = ({ setAuthToken }) => {
         )}
 
         <form onSubmit={handleAuthSubmit} className="space-y-6">
-          {isLogin == false && (
+          {!isLogin && (
             <InputField
               label="Name"
               name="name"
