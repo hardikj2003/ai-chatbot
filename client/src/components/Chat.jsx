@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Sidebar from "./Sidebar";
 import MessageBubble from "./MessageBubble";
 import ChatInput from "./ChatInput";
@@ -22,7 +22,7 @@ const Chat = () => {
   const fetchAllChats = useCallback(async () => {
     try {
       const response = await fetch(
-        "https://ai-chatbot-df61.onrender.com/api/chat/all",
+        "http://localhost:8000/api/chat/all",
         {
           headers: { Authorization: `Bearer ${token}` },
         },
